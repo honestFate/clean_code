@@ -1,0 +1,35 @@
+sz - table_size
+// task8/task8.py, HashTable.__init__: размер хэш-таблицы
+
+stp - probe_step
+// task8/task8.py, HashTable.__init__: шаг линейного пробирования при коллизии
+
+slots - keys
+// task9/task9.py, NativeDictionary: массив, хранящий ключи словаря
+
+s1 - tokens_stack
+// task4/task4_2.py, evaluate_postfix: стек входных токенов выражения
+
+s2 - operands_stack
+// task4/task4_2.py, evaluate_postfix: стек промежуточных операндов
+
+chars - open_brackets_stack
+// task4/task4_2.py, is_balanced: стек незакрытых открывающих скобок
+
+temp - dequeued_item
+// task5/task5_2.py, StaticArrayQueue.dequeue: элемент, снятый с головы очереди
+
+len - items_count
+// task5/task5_2.py, StaticArrayQueue: счётчик элементов в очереди
+
+acc - rolling_hash_value
+// task8/task8_2.py, MultiHashTable._candidates: накопитель полиномиального хэша
+
+victim - victim_slot_index
+// task12/task12.py, NativeCache._displace: индекс вытесняемого слота
+
+tail - tail_index
+// task6/task6_2.py, DynamicArrayDeque.removeTail: позиция последнего элемента в кольцевом буфере
+
+i - nodes_count
+// task1/task1.py, LinkedList.len: счётчик пройденных нод списка
