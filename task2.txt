@@ -1,0 +1,73 @@
+// 6.1
+
+_data - dimension_rows
+// task3/task3_2.py, MdDynArray: подмассивы текущего измерения,
+// а не абстрактные «данные»
+
+slots - cached_keys
+// task12/task12.py, NativeCache: ключи закэшированных записей;
+// slots — деталь открытой адресации
+
+hits - usage_frequencies
+// task12/task12.py, NativeCache: частота обращений к записи для LFU-вытеснения
+
+append_queue - incoming_stack
+remove_queue - outgoing_stack
+// task5/task5_2.py, StackQueue: это стеки, имя «queue» подменяет
+// уровень абстракции
+
+_sum - numeric_values_total
+// task4/task4.py, Stack: сумма числовых элементов для get_mean
+
+
+// 6.2
+
+_array - ring_buffer
+// task6/task6_2.py, DynamicArrayDeque: кольцевой буфер с индексом головы
+// по модулю ёмкости
+
+slow - slow_pointer
+fast - fast_pointer
+// task2/task2_2.py, linked_list_2_is_cycled: алгоритм Флойда
+// «черепаха и заяц»
+
+stamps - lru_timestamps
+// task12/task12_2.py, LruCache: метки последнего обращения для LRU-вытеснения
+
+acc - rolling_hash_value
+// task8/task8_2.py, MultiHashTable._candidates: накопитель полиномиального
+// (rolling) хэша
+
+
+// 6.3
+
+city, street, house_number, postal_code
+// класс DeliveryAddress: по отдельности имена неоднозначны, в совокупности
+// образуют адрес доставки; если city понадобится локально в методе расчёта
+// маршрута — нужен префикс addr_city
+
+row_index, row_supplier_code, row_price_rub
+// функция parse_price_list: префикс row_ привязывает переменные к текущей
+// строке прайса и отделяет их от итоговых total_price_rub, total_rows_count
+
+attempt_number, delay_seconds, max_attempts
+// класс RetryPolicy: контекст класса делает имена самодостаточными,
+// но при передаче наружу нужны retry_delay_seconds, retry_max_attempts
+
+
+// 6.4
+
+k - shift_target_index
+// task3/task3.py, DynArray.insert/delete: индекс сдвигаемого элемента
+
+r - collected_nodes
+// task7/task7.py, OrderedList.get_all: накопитель нод для возврата
+
+itm - appended_item
+// task3/task3.py, DynArray.append/insert: добавляемый элемент
+
+mode - most_frequent_value
+// task7/task7.py, OrderedList.most_frequent: самое частое значение списка
+
+clock - access_counter
+// task12/task12_2.py, LruCache: логические часы, счётчик обращений к кэшу
