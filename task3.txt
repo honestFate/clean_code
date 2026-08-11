@@ -1,0 +1,109 @@
+// 7.1
+
+all - is_delete_all
+// task1/task1.py, LinkedList.delete; task2/task2.py, LinkedList2.delete:
+// признак «удалять все вхождения»; заодно перестаёт затенять встроенный all()
+
+asc - is_ascending
+// task7/task7.py, OrderedList.__init__/clean: направление сортировки
+// поле уже __ascending, от схемы отставал только параметр
+
+_track_min - is_min_tracked
+// task4/task4.py, Stack.__init__: признак того, что стек ведёт вложенный
+// стек минимумов, глагол не подразумевает true/false
+
+present - is_key_present
+// task9/task9_2.py, BitStringDictionary: занятость ячейки для битового ключа
+// present без префикса читается как существительное
+
+get - is_member
+// task10/task10.py, PowerSet.get: метод возвращает bool, а имя get обещает
+// значение
+
+_get_bit - _is_bit_set
+// task11/task11.py, BloomFilter: возвращает признак бит установлен, а не бит
+
+
+// 7.2
+
+found - is_value_found
+// task8/task8.py, HashTable.find; task8/task8_2.py, probe_count: цикл
+// пробирования кончается либо находкой, либо исчерпанием таблицы
+
+done - is_restore_done
+// task11/task11_2.py, restore_set: жадный цикл выходит по двум разным
+// причинам - все биты покрыты либо ни один кандидат не даёт прироста
+
+success - is_removed
+// task9/task9_2.py, OrderedListDictionary.delete; task10/task10.py,
+// PowerSet.remove; task10/task10_2.py, Bag.remove - возвращают именно
+// признак успеха
+
+error - is_merge_error
+// task11/task11_2.py, merge_filters: несовпадение длин фильтров -
+// ошибка, сейчас маскируется тем же None, что и пустой вход
+
+
+// 7.3
+
+i - nodes_count
+// task1/task1.py, LinkedList.len; task2/task2.py, task2/task2_2.py, len:
+// счётчик живёт дольше цикла и возвращается наружу - это уже не индекс
+
+k - shift_index
+// task3/task3.py, DynArray.insert/delete: k - третья буква для первого
+// и единственного уровня вложенности, внутри нетривиальный сдвиг
+
+i - _
+// task5/task5_2.py, rotate_queue: в теле цикла i не используется
+
+offset, left/right, _
+// task6/task6_2.py, _resize; task10/task10_2.py, cartesian_product;
+// task8/task8.py, seek_slot/find - здесь имена уже выбраны верно
+
+
+// 7.4
+
+addTail - addBack
+removeTail - removeBack
+// task6/task6.py, Deque; task6/task6_2.py, DynamicArrayDeque:
+// front парен с back, head - с tail, сейчас пары перемешаны
+
+push/pop/peek - head_push/head_pop/head_peek
+// task4/task4.py, Stack: у операций с хвостом префикс есть, у операций
+// с головой нет, симметрия пар не видна
+
+_append, _insert_before - _link
+// task7/task7.py, OrderedList: обратная к _unlink операция называется
+// то _append, то _insert_before
+
+a - left_operand
+b - right_operand
+// task4/task4_2.py, evaluate_postfix: b снимается со стека первым,
+// но по смыслу это правый операнд
+
+head/tail, low/high, start/end, left/right, put/get
+// task5/task5_2.py, StaticArrayQueue - удачные пары, которые уже есть
+
+
+// 7.5
+
+temp - next_node
+// task2/task2_2.py, linked_list_2_reverse: ссылка на следующую ноду,
+// сохранённая до перезаписи указателей
+
+temp - убрать совсем
+// task2/task2_2.py, linked_list_2_bubble_sort: обмен пишется кортежем
+// nested_node.value, nested_node.next.value = nested_node.next.value,
+// nested_node.value
+
+result - убрать совсем
+// task7/task7.py, _should_go_first: результат compare используется
+// один раз, сравнение возвращается напрямую
+
+new_min - убрать совсем
+// task4/task4.py, Stack.push: две промежуточные подряд там, где хватает
+// одной — push(value if current_min is None else min(value, current_min))
+
+result - hash_value
+// task11/task11.py, BloomFilter._hash: накопитель полиномиального хэша
