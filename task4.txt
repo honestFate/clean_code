@@ -1,0 +1,24 @@
+stringPTR / stringREF - brain_string_pointer / brain_string_alias
+// cpp_piscine, Module_01/ex02/main.cpp
+f_len / filter_len - filter_bits_count
+// AST, task11/task11.py
+seed / base - hash_base_candidate / hash_base
+// AST, task8/task8_2.py
+str1 - checked_value
+// AST, task11/task11.py
+v1, v2 - left_value, right_value
+// AST, task7/task7.py
+all - delete_all_matches
+// AST, task1/task1.py
+_min - minimal_item
+// AST, task6/task6.py
+queue - items_array
+// AST, task5/task5_2.py
+dbl - parsed_double_value
+// cpp_piscine, Module_06/ex00/Converter.cpp
+mirror - expected_values
+// cpp_piscine, Module_07/ex02/main.cpp
+_fractionalBitsNumber - fractional_bits_count
+// cpp_piscine, Module_02/ex02/Fixed.hpp
+amount - damage_points
+// cpp_piscine, Module_03/ex00/ClapTrap.hpp
