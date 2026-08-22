@@ -1,0 +1,55 @@
+// 3.1
+
+EmailFileProcessor - SupplierPriceMailbox
+// tranzit-services, price_collector/price_list_collector.py
+// Processor + File - запрещённые Processor/Data; класс владеет ящиком с прайсами
+
+QueueManager - TwoGisLeadQueue
+// bitrix, php_interface/classes/TwoGis/QueueManager.php
+// Manager; класс не управляет очередью, а является ею (HL-блок TwoGisLeadQueue)
+
+CrmCreator - LeadFactory
+// bitrix, php_interface/classes/TwoGis/CrmCreator.php
+// имя-глагол create; неймспейс Local\TwoGis уже задаёт контекст
+
+ImportStats - AutoparkSummary
+// tranzit-services, analytics/autopark.py
+// поля описывают автопарк, а не импорт
+
+ResolveResult - NomenclatureMatch
+// tranzit-services, analytics/queries/nomenclature_resolver.py
+// глагол resolve + служебное Result; это результат сопоставления номенклатуры
+
+// 3.2
+
+saveItem - enqueue
+// bitrix, php_interface/classes/TwoGis/QueueManager.php
+// в TaskQueueService та же операция уже называется enqueue
+
+getItemsToProcess - getNextBatch
+// bitrix, php_interface/classes/TwoGis/QueueManager.php
+// в TaskQueueService та же выборка порции называется getNextBatch
+
+updateItemProcessed - markCompleted
+// bitrix, php_interface/classes/TwoGis/QueueManager.php
+// в TaskQueueService закрытие элемента называется markCompleted,
+// рядом с ним парные markProcessing и markError
+
+getQueueStats - getStats
+// bitrix, php_interface/classes/TwoGis/QueueManager.php
+// в TaskQueueService то же самое называется getStats;
+// префикс Queue избыточен - класс и так очередь
+
+$queueManager - $leadQueue
+// bitrix, php_interface/classes/TwoGis/CrmCreator.php
+// поле названо по менеджеру, а не по сущности
+
+get_district_aggregates - build_dataframe
+// tranzit-services, analytics/queries/market_potential.py
+// против sales_by_brand, sales_by_contractor,
+// promo_cross_section - вызывается через тот же df_cached
+
+render_repricing_only - generate_repricing_only
+// tranzit-services, analytics/services/pricing_generation
+// та же сигнатура и конвейер, что у generate_for_brand;
+// render_ в файле занято под картинки
