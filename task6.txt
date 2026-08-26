@@ -1,0 +1,49 @@
+hash_fun - calc_slot_index
+// task8/task8.py, task12/task12.py: fun - пустой суффикс, имя не глагол;
+// метод вычисляет индекс слота по ключу
+
+_seek_slot - find_slot_index
+// task12/task12.py: seek подразумевает перемещение курсора, а метод ищет
+// и возвращает индекс свободного или совпавшего слота
+
+_displace - evict_least_used_slot
+// task12/task12.py: невыразительный глагол без объекта; метод вытесняет
+// запись с минимальным счётчиком обращений
+
+get - get_value_and_count_hit
+// task12/task12.py, NativeCache: метод не только читает значение,
+// но и инкрементирует hits - побочный эффект скрыт за простым get.
+// Лучше разбить на чистый get_value и отдельный register_hit
+
+get - is_member
+// task10/task10.py, PowerSet: возвращает bool, значит это предикат
+// и ему нужен префикс is, а не get
+
+clean - clear_all_nodes + set_sort_order
+// task7/task7.py, OrderedList.clean(asc): метод делает два дела -
+// очищает список и переключает направление сортировки.
+// Одно имя честно описать это не может, нужно разделить
+
+len - count_nodes
+// task1/task1.py, task7/task7.py: существительное вместо глагола плюс
+// дублирование встроенной len(); метод проходит список и считает ноды
+
+is_value - is_probably_added
+// task11/task11.py, BloomFilter: имя обещает точный ответ, а фильтр даёт
+// ложноположительные срабатывания - семантика должна быть в имени
+
+value_mask - calc_value_mask
+// task11/task11_2.py: имя-существительное для функции; она вычисляет
+// битовую маску значения
+
+getRandom - generate_random_number
+// cpp_piscine, Module_08/ex01/Span.hpp: get подразумевает чтение готового
+// поля, а метод генерирует новое число
+
+printVec - print_numbers
+// cpp_piscine, Module_08/ex01/Span.hpp: непроизносимое сокращение Vec
+// раскрывает тип контейнера вместо сути - что именно печатается
+
+fillRandom - fill_with_random_numbers
+// cpp_piscine, Module_08/ex01/Span.hpp: заполнить случайно - неясно,
+// чем и до какого объёма; метод добивает вектор до вместимости
