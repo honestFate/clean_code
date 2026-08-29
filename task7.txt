@@ -1,0 +1,47 @@
+3.1. Методы-фабрики
+
+1) OrderedList — task7/task7.py
+было:
+    OrderedList(True)
+    OrderedList(False)
+стало:
+    class OrderedList:
+        def __init__(self, ascending: bool) -> None: ...
+
+        @classmethod
+        def ascending(cls) -> "OrderedList":
+            return cls(True)
+
+        @classmethod
+        def descending(cls) -> "OrderedList":
+            return cls(False)
+
+    OrderedList.descending()
+
+2) SaltedHashTable — task8/task8_2.py
+было:
+    SaltedHashTable(17, 3)
+    SaltedHashTable(17, 3, 12345)
+стало:
+    SaltedHashTable.with_random_salt(table_size=17, probe_step=3)
+    SaltedHashTable.with_fixed_salt(table_size=17, probe_step=3, salt_value=12345)
+
+3) MdDynArray — task3/task3_2.py
+было:
+    MdDynArray([3, 4], 0)
+    MdDynArray([3, 4])
+стало:
+    MdDynArray.filled_with(dimension_sizes=[3, 4], fill_value=0)
+    MdDynArray.of_empty_cells(dimension_sizes=[3, 4])
+
+
+3.2. Интерфейсы и абстрактные классы
+
+ICharacter      - Character           // интерфейс без префикса
+Character       - PlayerCharacter     // реализации нужно своё содержательное имя, а не имя интерфейса
+
+IMateriaSource  - MateriaSource       // интерфейс
+MateriaSource   - MateriaBook         // реализация хранилище шаблонов материй
+
+AAnimal         - Animal              // WrongAnimal / WrongCat из ex00 - это демонстрация невиртуального деструктора:
+				      // NonPolymorphicAnimal / NonPolymorphicCat
