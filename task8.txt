@@ -1,0 +1,47 @@
+16 - INITIAL_CAPACITY, MIN_CAPACITY
+// task3/task3.py, DynArray.__init__: одно значение в двух разных смыслах -
+// стартовая ёмкость и нижняя граница усечения; теперь меняются независимо
+
+2 * self.capacity - self.capacity * GROWTH_FACTOR
+// task3/task3.py, append и insert: магическое число повторялось в двух
+// точках с одним смыслом
+
+self.capacity / 1.5 - self.capacity / SHRINK_FACTOR
+// task3/task3.py, delete: имя объясняет, почему коэффициенты роста и
+// усечения разные
+
+self._capacity // 4, self._capacity // 2 - SHRINK_THRESHOLD_DIVISOR, SHRINK_FACTOR
+// task6/task6_2.py, _maybe_shrink: оба числа задают политику усечения,
+// но по коду это не читалось, рядом уже был INITIAL_CAPACITY
+
+17, 223 - FIRST_HASH_FACTOR, SECOND_HASH_FACTOR
+// task11/task11.py, hash1 и hash2: множители двух независимых хэш-функций
+
+sz=17, stp=3, load_factor=0.75 - DEFAULT_TABLE_SIZE, DEFAULT_PROBE_STEP, DEFAULT_LOAD_FACTOR
+// task8/task8_2.py, DynamicHashTable.__init__: умолчания были зашиты
+// в сигнатуру и не видны ни снаружи, ни тестам
+
+self.size * 2 - self.size * TABLE_GROWTH_FACTOR
+// task8/task8_2.py, _grow: значение совпадает с GROWTH_FACTOR из DynArray,
+// но смысл другой - рост по нагрузке против роста по заполнению,
+// поэтому отдельное имя
+
+QUEUE_CAPACITY - DEFAULT_QUEUE_CAPACITY + параметр capacity
+// task5/task5_2.py, StaticArrayQueue: имя было нормальным, но класс
+// оставался привязан к единственному значению 42
+
+self.charge(1) - self.charge(WRITE_TARIFF)
+// task3/task3_2.py, BankDynArray._on_write: единица здесь - третий тариф
+// амортизационной схемы, теперь стоит рядом с APPEND_TARIFF и DELETE_TARIFF
+
+self.hits[victim] = 0, self.stamps[victim] = 0 - NO_HITS, NEVER_ACCESSED_STAMP
+// task12/task12.py и task12_2.py, _displace: нули выглядели как
+// обычное обнуление
+
+None - EMPTY_SLOT
+// task8, task9, task12: маркер свободного слота дублировался в трёх
+// классах, вынесен в общий constants.py как Final-значение
+
+std::rand() % 2 - std::rand() % ROBOTOMY_SUCCESS_MODULO
+// cpp_piscine, Module_05/ex02/RobotomyRequestForm.cpp: единственное
+// магическое число, остальные уже вынесены в #define
