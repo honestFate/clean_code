@@ -1,0 +1,57 @@
+int(self.capacity / 1.5) - self.capacity * 2 // 3
+// task3/task3.py, delete: вещественное деление с приведением через int()
+// заменено целочисленной арифметикой - уходит и промежуточный float,
+// и неявное усечение
+
+(self.count + 1) / self.size > self.load_factor - (self.count + 1) * LOAD_FACTOR_DENOMINATOR > self.size * LOAD_FACTOR_NUMERATOR
+// task8/task8_2.py, _grow_if_needed: сравнение float с float заменено
+// сравнением целых, 0.75 хранится как дробь 3/4, ошибка округления исчезает
+
+int(n ** 0.5) + 1 - math.isqrt(n) + 1
+// task8/task8_2.py, _is_prime: возведение в степень 0.5 даёт float,
+// и на больших n округление может отрезать делитель
+
+self._sum / len(self.stack) - защита уже есть, но делитель берётся дважды
+// task4/task4.py, get_mean: len(self.stack) вычисляется после проверки
+// на пустоту в отдельной строке items_count. Деление явно
+// защищено от нуля одним читаемым условием
+
+self.limit - проверка limit > 0 в CyclePointer.__init__
+// task5/task5_2.py: shift() сравнивает pointer + 1 == limit, при limit == 0
+// указатель никогда не сбросится и очередь молча зациклится на нуле
+
+self.filter_len - проверка filter_len > 0 в BloomFilter.__init__
+// task11/task11.py, _hash: результат берётся по модулю filter_len,
+// при нуле - ZeroDivisionError уже внутри хэша, далеко от причины
+
+'Index is out of bounds' - INDEX_OUT_OF_BOUNDS_MESSAGE
+// task3/task3.py: одна и та же строка продублирована в четырёх местах,
+// вынесена в константу модуля, текст правится в одной точке
+
+f"QUEUE_CAPACITY of {QUEUE_CAPACITY} is full" - QUEUE_FULL_MESSAGE.format(capacity=...)
+// task5/task5_2.py, enqueue: сообщение об ошибке названо именем
+// переменной из кода, а не сущностью, шаблон вынесен в константу -
+// это же точка входа для будущей локализации
+
+ord(char) - ord(char) по строке после unicodedata.normalize("NFC", value)
+// task11/task11.py, _hash: одна и та же строка в NFC и NFD даёт разные
+// хэши, и is_value возвращает False для визуально идентичного значения
+
+if self._capacity <= INITIAL_CAPACITY or self._count > self._capacity // 4
+- is_at_min_capacity = self._capacity <= INITIAL_CAPACITY
+  is_still_dense = self._count * SHRINK_THRESHOLD_DIVISOR > self._capacity
+  if is_at_min_capacity or is_still_dense: return
+// task6/task6_2.py, _shrink_if_sparse: составное условие разложено
+// на две именованные булевы переменные
+
+if index is None or self.slots[index] != key
+- is_slot_missing = index is None
+  is_other_key = not is_slot_missing and self.slots[index] != key
+  if is_slot_missing or is_other_key: return
+// task12/task12_2.py, _touch: два разных случая были склеены в одну
+// проверку, по коду не читалось, какой из них сработал
+
+return None при несовпадении длин фильтров - raise ValueError(FILTER_LENGTH_MISMATCH_MESSAGE)
+// task11/task11_2.py, merge_filters: пустой вход и ошибка склеены
+// в одно значение None, типы результата разведены - валидный BloomFilter
+// либо исключение
