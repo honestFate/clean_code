@@ -1,0 +1,68 @@
+def __init__(self, v) - def __init__(self, value: int | str) -> None
+// task1/task1.py, task7/task7.py, Node: параметр без аннотации в языке
+// без явного объявления, тип поля value виден только по вызовам
+
+self.head.prev = None, self.head.next = self.tail - Node.__init__(self, value=None, prev=None, next_node=None)
+// task2/task2_2.py, DummyLinkedList2.__init__: поля prev и next
+// дозаполняются снаружи после создания объекта, теперь все связи
+// инициализируются в конструкторе самого Node
+
+item.prev = self.tail.prev, item.next = self.tail - link_between(previous_node, item, self.tail)
+// task2/task2_2.py, add_in_tail: четыре присваивания правят поля чужого
+// объекта, вынесены в метод, который получает связи одним вызовом
+
+temp = self.queue[self.start.get()] - dequeued_item + self.queue[head_index] = None
+// task5/task5_2.py, dequeue: ячейка кольцевого буфера сохраняла ссылку
+// на снятый объект, после чтения затирается недопустимым значением,
+// иначе элемент не собирается сборщиком мусора
+
+self.array[self.count - 1] = None - тот же приём в resize и в insert
+// task3/task3.py: в delete затирание уже было, а в resize хвост нового
+// массива и сдвинутая ячейка в insert оставались с прежними ссылками -
+// приём применён единообразно
+
+self.min_stack = Stack(_track_min=False) if _track_min else None
+- self.min_stack: Stack | None = None, заполняется в отдельной ветке
+// task4/task4.py, Stack.__init__: рекурсивный вызов конструктора внутри
+// тернарника в списке полей, аннотация делает допустимое значение None
+// явным
+
+self._sum = 0 - assert self._sum == 0 после clean()
+// task4/task4.py: аккумулятор обнуляется только в конструкторе,
+// при очистке стека сумма оставалась от прошлых значений -
+// добавлен инвариант пустой стек -> нулевая сумма
+
+self.count = 0 ... self.capacity = 16 - assert 0 <= self.count <= self.capacity
+// task3/task3.py, после каждого resize: инвариант связи счётчика
+// и ёмкости, нарушение которого раньше проявлялось только
+// как IndexError далеко от причины
+
+for k in range(self.count, i, -1) - for shift_target_index in range(...)
+// task3/task3.py, insert: счётчик объявлен в заголовке цикла и не
+// используется после него - область видимости совпадает с областью смысла
+
+result = 0 перед циклом в _hash - rolling_hash_value = 0 непосредственно перед for
+// task11/task11.py: аккумулятор объявлялся строкой раньше, чем нужен,
+// теперь объявление и первое использование стоят рядом
+
+node = self.head в начале find, find_all, delete - объявление внутри while-заголовка через итератор _iter_nodes()
+// task1/task1.py: три метода начинались с одинаковой преждевременной
+// инициализации, обход вынесен в генератор, переменная живёт только в цикле
+
+def delete(self, val, all=False) ... node = node.next - current_node не переиспользуется после отвязки
+// task1/task1.py: после unlink переменная продолжала указывать
+// на удалённый узел и служила курсором дальше, введён отдельный
+// next_node, снятый до отвязки
+
+self.__ascending = asc - self.__ascending: Final[bool] = asc
+// task7/task7.py, OrderedList: направление сортировки задаётся один раз
+// и не должно меняться - Final фиксирует однократное присваивание
+
+self.load_factor = load_factor - assert 0 < load_factor < 1 в конструкторе
+// task8/task8_2.py, DynamicHashTable: значение вне диапазона приводило
+// либо к бесконечному росту, либо к отключённому росту без единого
+// признака ошибки
+
+self.stack = [] и self._sum = 0 - все поля перечислены в __slots__
+// task4/task4.py, task1/task1.py: опечатка в имени поля создавала новый
+// атрибут молча, __slots__ превращает это в AttributeError сразу
