@@ -1,0 +1,61 @@
+node = self.head в add, find, delete, len, get_all, remove_duplicates, most_frequent, find_index
+- def _iter_nodes(self) -> Iterator[Node] и обход через for node in self._iter_nodes()
+// task7/task7.py: курсор обхода объявлялся заново в восьми методах и жил
+// до конца каждого, теперь существует только внутри генератора
+
+r = [] перед циклом - return [node for node in self._iter_nodes()]
+// task7/task7.py, get_all: накопитель занимал весь метод ради трёх строк
+
+count = 0 перед циклом - return sum(1 for _ in self._iter_nodes())
+// task7/task7.py, len: аккумулятор жил пять строк, теперь не существует
+
+index = 0 и ручной index += 1 - for position, node in enumerate(self._iter_nodes())
+// task7/task7.py, find_index: счётчик переехал в заголовок цикла,
+// пропала возможность сбить его при правке тела
+
+mode, best_count, current_count - _iter_runs() -> Iterator[tuple[Any, int]]
+// task7/task7.py, most_frequent: три переменные жили через весь цикл
+// в 14 строк, подсчёт серий вынесен в генератор, в методе остался max()
+
+while node is not None and self.compare(...) != 0 внутри while target
+- _seek_value(start_node, value) -> Node | None
+// task7/task7.py, contains_sublist: node переживал итерации внешнего
+// цикла и правился в двух местах, внутренний поиск изолирован
+
+def compare(self, v1, v2) - def _compare(self, left_value, right_value)
+// task7/task7.py: метод публичный, хотя вызывается только изнутри класса
+// и переопределяется наследником - protected достаточно
+
+set2._items - set2.is_member(value)
+// task10/task10.py, intersection, union, difference: приватное поле
+// чужого экземпляра читалось из трёх методов, что делало _items
+// фактически публичным
+
+bases, candidate в одном методе - _bases_from_seeds() + _fill_missing_bases(bases)
+// task8/task8_2.py, _make_bases: две фазы отбора делили один список
+// и переменную candidate, теперь у каждой фазы свои локальные переменные
+
+self.size, self.slots, self.count по отдельности в _resize - _reset_slots(new_size)
+// task8/task8_2.py: три поля переприсваивались вразбивку между чтением
+// старых значений и заполнением новых, связанные команды сгруппированы,
+// временный список values живёт две строки вместо восьми
+
+best, best_gain внутри while - _pick_best_candidate(masks, uncovered) -> str | None
+// task11/task11_2.py, restore_set: обе переменные жили в теле цикла
+// рядом с masks, restored и uncovered - пять живых переменных
+// одновременно, теперь три
+
+QUEUE_CAPACITY = 42 на уровне модуля - StaticArrayQueue.DEFAULT_CAPACITY
+// task5/task5_2.py: константа видна всему модулю, хотя нужна одному классу
+
+INITIAL_CAPACITY = 16 на уровне модуля - DynamicArrayDeque.INITIAL_CAPACITY
+// task6/task6_2.py: то же самое, плюс имя перестаёт конфликтовать
+// с одноимённой константой из task3
+
+self.min_capacity = 16 - DynArray.MIN_CAPACITY
+// task3/task3.py: значение никогда не меняется, но хранилось как поле
+// экземпляра, то есть жило столько же, сколько сам массив
+
+self.hits, self.stamps - приватный _UsageStats с методами register_hit и pick_victim
+// task12/task12.py, task12_2.py: два поля кэша использовались только
+// парой методов вытеснения, а видны были всему классу
