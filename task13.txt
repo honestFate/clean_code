@@ -1,0 +1,35 @@
+for i in range(self.count): new_array[i] = self.array[i]
+- for target_cell, source_value in zip(new_array, self.array[:self.count]) ...
+  либо new_array[:self.count] = self.array[:self.count]
+// task3/task3.py, resize: копирование поэлементно по индексу, хотя оба
+// массива обходятся строго последовательно от нуля. Срез переносит весь
+// блок одной операцией, потерять единицу негде
+
+for k in range(self.count, i, -1): self.array[k] = self.array[k - 1]
+- self.array[insert_index + 1:self.count + 1] = self.array[insert_index:self.count]
+// task3/task3.py, insert: обратный цикл со смещением на -1 внутри тела -
+// классическое место для ошибки потери единицы, границы приходится
+// проверять взглядом. Срез задаёт исходный и целевой диапазоны явно.
+// То же самое в delete, где цикл идёт вперёд со смещением +1
+
+return all(self.array[i] == second_arr[i] for i in range(self.count))
+- return all(left == right for left, right in zip(self, second_arr))
+// task3/task3.py, __eq__: два разных массива индексируются одной
+// переменной i, при копировании такого кода имя индекса забывают
+// поменять. zip сопоставляет элементы сам, индекс исчезает
+
+index = self.hash_fun(value), index = (index + self.step) % self.size в цикле
+- def _probe_sequence(self, value) -> Iterator[int] с yield, обход через
+  for slot_index in self._probe_sequence(value)
+// task8/task8.py, seek_slot и find, task12/task12.py, _seek_slot: один
+// и тот же расчёт адреса пробирования продублирован в трёх методах.
+// Генератор превращает произвольный доступ в последовательный обход,
+// и условие выхода по кругу живёт в одном месте
+
+victim = 0, for index in range(1, self.size): if self.hits[index] < self.hits[victim]
+- victim_slot_index = min(range(self.size), key=self.hits.__getitem__)
+  либо heapq над (hits, index)
+// task12/task12.py, _displace: ручной поиск минимума с двумя индексами
+// в одном выражении и отдельным стартовым случаем для нулевого слота.
+// При частых вытеснениях уместнее очередь с приоритетом -
+// последовательная структура вместо линейного прохода по массиву
