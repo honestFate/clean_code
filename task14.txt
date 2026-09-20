@@ -1,0 +1,85 @@
+3.1.
+
+# тарифы подобраны под порог сжатия из DynArray.delete: списание за
+# реаллокацию должно покрывать перенос count элементов, иначе
+# амортизированная O(1) для append не выполняется
+APPEND_TARIFF = 9
+DELETE_TARIFF = 2
+// task3/task3_2.py, BankDynArray: числа выглядят произвольными,
+// а это результат подгонки под конкретный SHRINK_FACTOR
+
+
+# шаг пробирования и размер таблицы должны быть взаимно простыми,
+# иначе цикл обойдёт не все слоты и seek_slot вернёт None
+# на незаполненной таблице
+self.step = probe_step
+// task8/task8.py: инвариант из теории открытой адресации, из кода
+// видно только само выражение (index + step) % size
+
+
+# фильтр даёт ложноположительные ответы: True означает
+# "возможно добавлено", False - "точно не добавлено"
+def is_probably_added(self, value: str) -> bool:
+// task11/task11.py, BloomFilter: вызывающему нужно знать,
+// что False надёжен, а True - нет
+
+
+# двойка и полуторка разные намеренно: при равных коэффициентах
+# массив на границе чередует resize вверх и вниз на каждой операции
+GROWTH_FACTOR = 2
+SHRINK_FACTOR = 1.5
+// task3/task3.py: гистерезис - решение, а не опечатка
+
+
+# алгоритм Флойда: быстрый указатель догоняет медленный
+# внутри цикла ровно тогда, когда цикл есть
+while fast_pointer is not None and fast_pointer.next is not None:
+// task2/task2_2.py, linked_list_2_is_cycled: имена указателей
+// названия алгоритма не заменяют
+
+
+# жадный выбор, а не точное решение: задача покрытия множества
+# NP-полна, результат может быть больше минимального
+def restore_set(...)
+// task11/task11_2.py: комментарий предупреждает о классе точности
+
+
+# соль фиксирована на всю таблицу: защищает от заранее
+# подготовленного набора коллизий, но не от подбора в рантайме
+self.salt_value = salt_value
+// task8/task8_2.py, SaltedHashTable: граница применимости защиты
+
+
+3.2.
+
+std::sort(this->_vec.begin(), this->_vec.end()); //sort original vector
+- std::sort без комментария
+// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan: комментарий
+// дословно повторяет имя функции
+
+std::vector<long int> transoformed(this->_vec.size() - 1);
+  //creating new empty vector with less one size
+- std::vector<long int> gapsBetweenNeighbours(this->_vec.size() - 1);
+// cpp_piscine, Module_08/ex01/Span.cpp: комментарий пересказывал
+// объявление и прикрывал опечатку в имени transoformed. Имя
+// gapsBetweenNeighbours само объясняет и содержимое, и размер на единицу меньше
+
+std::transform(..., std::minus<int>()); //fill with *(n + 1) - *n
+- вызов вынесен в приватный метод fillGapsBetweenNeighbours()
+// cpp_piscine, Module_08/ex01/Span.cpp: строка не помещалась в экран,
+// комментарий объяснял, что она делает. Вместо этого у операции
+// появилось имя
+
+//SCOPE перед безымянным блоком { Array<int> tmp = numbers; ... }
+- блок вынесен в функцию checkCopyDoesNotShareBuffer(const Array<int>&)
+// cpp_piscine, Module_07/ex02/main.cpp: комментарий сообщал, зачем
+// стоят фигурные скобки - проверить вызов деструктора копий. Имя
+// функции сообщает это же
+
+i->makeSound(); //will output the cat sound!
+- const Animal* catAsAnimal = new Cat(); ... catAsAnimal->makeSound();
+// cpp_piscine, Module_04/ex00/main.cpp: комментарий существовал
+// только потому, что указатель назван i. С именем catAsAnimal
+// полиморфный вызов читается сам
+
+
