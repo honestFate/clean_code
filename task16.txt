@@ -1,0 +1,124 @@
+//SCOPE
+{
+    Array<int> tmp = numbers;
+    Array<int> test(tmp);
+}
+- блок вынесен в checkCopiesAreIndependent(const Array<int>& original)
+// cpp_piscine, Module_07/ex02/main.cpp
+// п.1 неочевидный: из слова SCOPE не понять, что блок проверяет вызов
+// деструктора копий без двойного освобождения буфера
+
+
+delete [] mirror;//
+- delete [] mirror;
+// cpp_piscine, Module_07/ex02/main.cpp
+// п.2 бормотание: пустой комментарий, оставленный по инерции
+
+
+/*   ft_lstnew_bonus.c   */ в заголовке файла ft_lstnew.c
+- имя в заголовке исправлено на ft_lstnew.c во всех девяти ft_lst* файлах
+// libft, а также копии libft внутри push_swap и fdf
+// п.3 недостоверный: файлы переименовали из *_bonus.c, заголовки
+// остались старыми, и поиск по имени из заголовка ничего не находит
+
+
+/*   stack_manager.c   */ в заголовке файла bonus/stack_manager_bonus.c
+- имя в заголовке исправлено на stack_manager_bonus.c
+// push_swap
+// п.3 недостоверный: обратный случай - файл скопирован в bonus,
+// заголовок указывает на основной файл, в котором другая реализация
+
+
+std::string const & getType() const; //Returns the materia type
+- комментарий удалён
+// cpp_piscine, Module_04/ex03/AMateria.hpp
+// п.4 шум: повторяет имя метода и тип возвращаемого значения
+
+
+std::sort(this->_vec.begin(), this->_vec.end()); //sort original vector
+- комментарий удалён
+// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
+// п.4 шум: повторяет имя функции std::sort
+
+
+std::vector<long int> transoformed(this->_vec.size() - 1);
+  //creating new empty vector with less one size
+- std::vector<long int> gapsBetweenNeighbours(this->_vec.size() - 1);
+// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
+// п.7 избыточный: комментарий пересказывает объявление и длиннее
+// его, а смысл размера "на единицу меньше" передаёт новое имя
+
+
+//
+// Created by fate on 15.03.2022.
+//
+- удалено
+// minitalk, minitalk.h
+// п.8 слишком много информации: автоматическая вставка CLion,
+// автора и дату создания хранит git
+
+
+// vim: set ts=4 sw=4 tw=80 noexpandtab:
+// -*- indent-tabs-mode:t; -*-
+// -*- mode: c++-mode; -*-
+- настройки перенесены в .editorconfig в корне репозитория
+// cpp_piscine, Module_00/ex02/Account.hpp (файл из задания)
+// п.9 нелокальная информация: настройки редакторов для всего проекта
+// записаны в конце заголовка одного класса
+
+
+//Account();
+- удалено
+// cpp_piscine, Module_00/ex02/Account.cpp, конструктор
+// п.11 закомментированный код: вызов конструктора по умолчанию
+// из другого конструктора в C++98 не делегирует, а создаёт
+// временный объект - код был неверным, поэтому и закомментирован
+
+
+/*while (1)
+{
+    B--;
+}*/
+- удалено
+// cpp_piscine, Module_05/ex00/main.cpp
+// п.11 закомментированный код: ручная проверка исключения
+// GradeTooLowException, заменена циклом в блоке try выше
+
+
+//AAnimal a; //Error!
+- строка удалена из main, проверка вынесена в отдельный файл
+  tests/abstract_instantiation.cpp, для которого цель make
+  ожидает ошибку компиляции
+// cpp_piscine, Module_04/ex02/main.cpp
+// п.11 закомментированный код: проверку абстрактности нельзя
+// запустить, пока она закомментирована, а раскомментировать её
+// значит сломать сборку всего упражнения
+
+
+//sigemptyset(&sa.sa_mask);
+//sigaddset(&sa.sa_mask, SIGUSR1);
+- sigemptyset(&sa.sa_mask); раскомментирован, sigaddset удалён
+// minitalk, server.c, main
+// п.11 закомментированный код, но удалить обе строки нельзя:
+// без sigemptyset поле sa_mask остаётся неинициализированным
+// и sigaction получает мусорную маску. Первая строка нужна,
+// вторая - черновик от попытки блокировать SIGUSR1
+
+
+std::transform(..., std::minus<int>()); //fill with *(n + 1) - *n
+- fillGapsBetweenNeighbours(gapsBetweenNeighbours);
+// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
+// п.12 функция вместо комментария: строка не помещалась в экран,
+// комментарий объяснял, что она делает
+
+
+i->makeSound(); //will output the cat sound!
+- const Animal* catAsAnimal = new Cat(); ... catAsAnimal->makeSound();
+// cpp_piscine, Module_04/ex00/main.cpp
+// п.12 переменная вместо комментария: комментарий нужен был
+// только потому, что указатель назван i
+
+
+Комментариев за закрывающей скобкой (п.6) в коде нет. Позиционные маркеры (п.5)
+и обязательные комментарии (п.10) встречаются только в заголовках,
+которых требует задание школы, поэтому не трогаются.
