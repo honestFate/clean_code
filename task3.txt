@@ -16,12 +16,25 @@ present - is_key_present
 // task9/task9_2.py, BitStringDictionary: занятость ячейки для битового ключа
 // present без префикса читается как существительное
 
-get - is_member
-// task10/task10.py, PowerSet.get: метод возвращает bool, а имя get обещает
-// значение
+controller - is_controller
+// bot_webserv, tasks/models.py, Worker: BooleanField, а без префикса
+// читается как ссылка на сотрудника-контролёра; в tasks_bot рядом
+// живёт controller_list с настоящим контролёром, и author_list['controller']
+// выглядит как его поле
 
-_get_bit - _is_bit_set
-// task11/task11.py, BloomFilter: возвращает признак бит установлен, а не бит
+contract - has_contract
+// bot_webserv, tasks/models.py, Partner: признак наличия договора,
+// а имя обещает сам договор
+
+control_data - requires_control_date
+// bot_webserv, tasks/models.py, ResultData: признак «для результата нужно
+// выбрать контрольную дату»; к опечатке data/date добавлялось отсутствие
+// глагола, и if result_data.get('control_data') читалось как проверка данных
+
+selected - is_date_selected
+// tasks_bot, app/handlers/done_handlers.py, process_simple_calendar:
+// календарь возвращает пару (флаг, дата), флаг без префикса легко
+// принять за выбранное значение
 
 
 // 7.2
@@ -46,9 +59,10 @@ error - is_merge_error
 
 // 7.3
 
-i - nodes_count
-// task1/task1.py, LinkedList.len; task2/task2.py, task2/task2_2.py, len:
-// счётчик живёт дольше цикла и возвращается наружу - это уже не индекс
+for button in range(len(lst)): lst[button] - for candidate in forward_candidates
+// tasks_bot, app/keyboards/trades_keyboards.py,
+// create_trades_forward_inline_kb: переменная цикла - индекс, а названа
+// как кнопка; индекс здесь вообще не нужен, элемент берётся напрямую
 
 k - shift_index
 // task3/task3.py, DynArray.insert/delete: k - третья буква для первого
@@ -57,9 +71,10 @@ k - shift_index
 i - _
 // task5/task5_2.py, rotate_queue: в теле цикла i не используется
 
-offset, left/right, _
-// task6/task6_2.py, _resize; task10/task10_2.py, cartesian_product;
-// task8/task8.py, seek_slot/find - здесь имена уже выбраны верно
+for key, value in self.config.items('senders') - for option_name, sender_email in ...
+// price_parser, price_list_collector.py, EmailFileProcessor.__init__:
+// key проверяется на startswith('sender'), value кладётся в allowed_senders;
+// с общими именами это не видно без чтения тела цикла
 
 
 // 7.4
@@ -82,8 +97,10 @@ b - right_operand
 // task4/task4_2.py, evaluate_postfix: b снимается со стека первым,
 // но по смыслу это правый операнд
 
-head/tail, low/high, start/end, left/right, put/get
-// task5/task5_2.py, StaticArrayQueue - удачные пары, которые уже есть
+save_to_redis / get_on_redis / redis_clear - cache_put / cache_get / cache_delete
+// tasks_bot, app/services/redis_data.py: три операции над одним кэшем
+// названы тремя разными схемами - глагол+to, глагол+on, существительное+глагол;
+// противоположные put/get и парная к ним delete должны узнаваться с первого взгляда
 
 
 // 7.5

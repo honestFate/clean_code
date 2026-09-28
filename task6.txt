@@ -24,26 +24,30 @@ clean - clear_all_nodes + set_sort_order
 // очищает список и переключает направление сортировки.
 // Одно имя честно описать это не может, нужно разделить
 
-len - count_nodes
-// task1/task1.py, task7/task7.py: существительное вместо глагола плюс
-// дублирование встроенной len(); метод проходит список и считает ноды
+comparison - build_forward_recipients
+// tasks_bot, app/services/utils.py: существительное вместо глагола, и
+// сравнение - лишь способ; функция возвращает упорядоченный список
+// сотрудников, которым можно переадресовать задачу
 
 is_value - is_probably_added
 // task11/task11.py, BloomFilter: имя обещает точный ответ, а фильтр даёт
 // ложноположительные срабатывания - семантика должна быть в имени
 
-value_mask - calc_value_mask
-// task11/task11_2.py: имя-существительное для функции; она вычисляет
-// битовую маску значения
+valid_data - save_census
+// bot_webserv, census/services.py: имя похоже на предикат «данные валидны»,
+// а функция по полям формы закрывает точку или сохраняет анкету сенсуса
+// B2B/B2C в базу - побочный эффект спрятан за проверкой
 
 getRandom - generate_random_number
 // cpp_piscine, Module_08/ex01/Span.hpp: get подразумевает чтение готового
 // поля, а метод генерирует новое число
 
-printVec - print_numbers
-// cpp_piscine, Module_08/ex01/Span.hpp: непроизносимое сокращение Vec
-// раскрывает тип контейнера вместо сути - что именно печатается
+create_trades_register_inline_kb - create_phone_request_kb
+// tasks_bot, app/keyboards/trades_keyboards.py: функция строит
+// ReplyKeyboardMarkup с кнопкой «Передать телефон», а имя обещает
+// inline-клавиатуру - в aiogram это разные типы с разным поведением
 
-fillRandom - fill_with_random_numbers
-// cpp_piscine, Module_08/ex01/Span.hpp: заполнить случайно - неясно,
-// чем и до какого объёма; метод добивает вектор до вместимости
+get_ready_result_task - complete_task_with_result
+// tasks_bot, app/database/database.py: get обещает чтение, а функция
+// создаёт комментарий, результат и переводит задачу в «Выполнено»
+// тремя запросами к API

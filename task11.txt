@@ -45,16 +45,24 @@ best, best_gain внутри while - _pick_best_candidate(masks, uncovered) -> s
 // рядом с masks, restored и uncovered - пять живых переменных
 // одновременно, теперь три
 
-QUEUE_CAPACITY = 42 на уровне модуля - StaticArrayQueue.DEFAULT_CAPACITY
-// task5/task5_2.py: константа видна всему модулю, хотя нужна одному классу
+global http_client + get_http_client() / close_http_client() - класс ApiClient с приватным _http
+// tasks_bot, app/database/database.py: HTTP-клиент жил в глобальной
+// переменной модуля, а половина функций его вообще не использовала и
+// открывала свой httpx.AsyncClient(). Клиент стал полем объекта, видимым
+// только методам обращения к API
 
-INITIAL_CAPACITY = 16 на уровне модуля - DynamicArrayDeque.INITIAL_CAPACITY
-// task6/task6_2.py: то же самое, плюс имя перестаёт конфликтовать
-// с одноимённой константой из task3
+date, del_date, exclude_census, exclude_new, tasks в начале del_task
+- выборка задач перенесена к циклу удаления задач, date и del_date
+  заменены одной expired_before
+// bot_webserv, core/tasks.py, del_task: пять переменных объявлялись
+// в первых строках, а tasks использовался только после удаления
+// комментариев исполнителей и авторов - три несвязанных блока
+// перемешивались с одной подготовкой
 
-self.min_capacity = 16 - DynArray.MIN_CAPACITY
-// task3/task3.py: значение никогда не меняется, но хранилось как поле
-// экземпляра, то есть жило столько же, сколько сам массив
+worker_req.json()[0]['code'] в четырёх местах - worker_code = workers[0]['code'] один раз
+// tasks_bot, app/database/database.py, get_trades_tasks_list: ответ
+// разбирался заново в каждом логе и в URL; worker_req жил через всю
+// функцию ради одного поля, теперь после извлечения кода он не нужен
 
 self.hits, self.stamps - приватный _UsageStats с методами register_hit и pick_victim
 // task12/task12.py, task12_2.py: два поля кэша использовались только

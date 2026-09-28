@@ -2,9 +2,10 @@
 // task3/task3.py, DynArray.__init__: одно значение в двух разных смыслах -
 // стартовая ёмкость и нижняя граница усечения; теперь меняются независимо
 
-2 * self.capacity - self.capacity * GROWTH_FACTOR
-// task3/task3.py, append и insert: магическое число повторялось в двух
-// точках с одним смыслом
+r.expire(task_id, 180) - r.expire(task_id, TASK_CACHE_TTL_SEC)
+// tasks_bot, app/services/redis_data.py, save_to_redis: время жизни задачи
+// в кэше; сколько бот держит устаревшую копию задачи - решение, которое
+// должно находиться по имени, а не поиском числа
 
 self.capacity / 1.5 - self.capacity / SHRINK_FACTOR
 // task3/task3.py, delete: имя объясняет, почему коэффициенты роста и
@@ -17,22 +18,27 @@ self._capacity // 4, self._capacity // 2 - SHRINK_THRESHOLD_DIVISOR, SHRINK_FACT
 17, 223 - FIRST_HASH_FACTOR, SECOND_HASH_FACTOR
 // task11/task11.py, hash1 и hash2: множители двух независимых хэш-функций
 
-sz=17, stp=3, load_factor=0.75 - DEFAULT_TABLE_SIZE, DEFAULT_PROBE_STEP, DEFAULT_LOAD_FACTOR
-// task8/task8_2.py, DynamicHashTable.__init__: умолчания были зашиты
-// в сигнатуру и не видны ни снаружи, ни тестам
+len(log_entry) > 4000, log_entry[:4000] - TELEGRAM_LOG_MAX_CHARS
+// tasks_bot, app/services/log_handlers.py: число повторено четыре раза
+// в двух обработчиках; это запас до лимита Telegram в 4096 символов
+// на сообщение, и откуда оно взялось, видно только из имени
 
 self.size * 2 - self.size * TABLE_GROWTH_FACTOR
 // task8/task8_2.py, _grow: значение совпадает с GROWTH_FACTOR из DynArray,
 // но смысл другой - рост по нагрузке против роста по заполнению,
 // поэтому отдельное имя
 
-QUEUE_CAPACITY - DEFAULT_QUEUE_CAPACITY + параметр capacity
-// task5/task5_2.py, StaticArrayQueue: имя было нормальным, но класс
-// оставался привязан к единственному значению 42
+pd.to_numeric(...) / 1.35 и f"Цены Rossko разделены на 1.35" - ROSSKO_PRICE_DIVISOR
+// price_parser, price_list_collector.py, normalize_dataframe: коэффициент
+// приведения цен Rossko к сопоставимым с остальными поставщиками стоял
+// дважды - в вычислении и в тексте лога; при правке одного лог начал бы врать
 
-self.charge(1) - self.charge(WRITE_TARIFF)
-// task3/task3_2.py, BankDynArray._on_write: единица здесь - третий тариф
-// амортизационной схемы, теперь стоит рядом с APPEND_TARIFF и DELETE_TARIFF
+WorkerComments.objects.exclude(pk=2), constant_comment_id: int = 2 - SERVICE_COMMENT_ID
+// bot_webserv, core/tasks.py, del_task и tasks_bot, app/config.py:
+// служебный комментарий исполнителя, который бот подставляет при
+// переадресации (post_forward_task), поэтому чистка его не удаляет;
+// в одном сервисе это голая двойка, в другом - имя, говорящее только
+// «константа», связь между ними держится в голове
 
 self.hits[victim] = 0, self.stamps[victim] = 0 - NO_HITS, NEVER_ACCESSED_STAMP
 // task12/task12.py и task12_2.py, _displace: нули выглядели как
@@ -42,6 +48,8 @@ None - EMPTY_SLOT
 // task8, task9, task12: маркер свободного слота дублировался в трёх
 // классах, вынесен в общий constants.py как Final-значение
 
-std::rand() % 2 - std::rand() % ROBOTOMY_SUCCESS_MODULO
-// cpp_piscine, Module_05/ex02/RobotomyRequestForm.cpp: единственное
-// магическое число, остальные уже вынесены в #define
+"Новая", "Выполнено", "Переадресована", "ОтклоненоСистемой" - TaskStatus(models.TextChoices)
+// bot_webserv, api/views/task_views.py, TaskViewSet.put; core/tasks.py;
+// tasks_bot, app/database/database.py: статусы задачи 1С сравнивались
+// строковыми литералами в двух репозиториях; опечатка в одном из них
+// превращается в ветку, которая молча не срабатывает

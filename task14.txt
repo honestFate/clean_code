@@ -17,18 +17,19 @@ self.step = probe_step
 // видно только само выражение (index + step) % size
 
 
-# фильтр даёт ложноположительные ответы: True означает
-# "возможно добавлено", False - "точно не добавлено"
-def is_probably_added(self, value: str) -> bool:
-// task11/task11.py, BloomFilter: вызывающему нужно знать,
-// что False надёжен, а True - нет
+# лимит Telegram - 4096 символов на сообщение; запас нужен под
+# суффикс "... (обрезано)" и HTML-теги форматтера my_verbose
+TELEGRAM_LOG_MAX_CHARS = 4000
+// tasks_bot, app/services/log_handlers.py: без комментария непонятно,
+// почему 4000, а не 4096, и что будет, если его «округлить»
 
 
-# двойка и полуторка разные намеренно: при равных коэффициентах
-# массив на границе чередует resize вверх и вниз на каждой операции
-GROWTH_FACTOR = 2
-SHRINK_FACTOR = 1.5
-// task3/task3.py: гистерезис - решение, а не опечатка
+# копия задачи нужна только на время диалога с кнопками (тип действия,
+# контакт, результат, дата); после TTL бот перечитает задачу из API
+# и увидит изменения из 1С
+TASK_CACHE_TTL_SEC = 180
+// tasks_bot, app/services/redis_data.py: объясняет, от чего зависит
+// значение - от длины диалога, а не от нагрузки на API
 
 
 # алгоритм Флойда: быстрый указатель догоняет медленный
@@ -44,42 +45,48 @@ def restore_set(...)
 // task11/task11_2.py: комментарий предупреждает о классе точности
 
 
-# соль фиксирована на всю таблицу: защищает от заранее
-# подготовленного набора коллизий, но не от подбора в рантайме
-self.salt_value = salt_value
-// task8/task8_2.py, SaltedHashTable: граница применимости защиты
+# слияние начинается с прайса Транзит-Ойл, если он пришёл: наши цены
+# становятся первой колонкой после артикула и бренда, а при совпадении
+# колонок (suffixes=('', '_dup')) остаётся версия левого, нашего фрейма
+if tranzit_oil_supplier not in all_suppliers:
+// price_parser, price_list_collector.py, process_data_files: прежний
+// комментарий «Начинаем с первого поставщика» описывал только одну ветку
 
 
 3.2.
 
-std::sort(this->_vec.begin(), this->_vec.end()); //sort original vector
-- std::sort без комментария
-// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan: комментарий
-// дословно повторяет имя функции
-
-std::vector<long int> transoformed(this->_vec.size() - 1);
-  //creating new empty vector with less one size
-- std::vector<long int> gapsBetweenNeighbours(this->_vec.size() - 1);
-// cpp_piscine, Module_08/ex01/Span.cpp: комментарий пересказывал
-// объявление и прикрывал опечатку в имени transoformed. Имя
-// gapsBetweenNeighbours само объясняет и содержимое, и размер на единицу меньше
-
-std::transform(..., std::minus<int>()); //fill with *(n + 1) - *n
-- вызов вынесен в приватный метод fillGapsBetweenNeighbours()
-// cpp_piscine, Module_08/ex01/Span.cpp: строка не помещалась в экран,
-// комментарий объяснял, что она делает. Вместо этого у операции
-// появилось имя
-
-//SCOPE перед безымянным блоком { Array<int> tmp = numbers; ... }
-- блок вынесен в функцию checkCopyDoesNotShareBuffer(const Array<int>&)
-// cpp_piscine, Module_07/ex02/main.cpp: комментарий сообщал, зачем
-// стоят фигурные скобки - проверить вызов деструктора копий. Имя
-// функции сообщает это же
-
-i->makeSound(); //will output the cat sound!
-- const Animal* catAsAnimal = new Cat(); ... catAsAnimal->makeSound();
-// cpp_piscine, Module_04/ex00/main.cpp: комментарий существовал
-// только потому, что указатель назван i. С именем catAsAnimal
-// полиморфный вызов читается сам
+if request.POST.get("closing") is not None:  # Если закрыто
+elif request.POST.get("not_communicate"):  # Если нет коммуникации
+- is_point_closed = request.POST.get("closing") is not None
+  is_contact_missing = bool(request.POST.get("not_communicate"))
+// bot_webserv, census/services.py, valid_data: комментарии переводили
+// имена полей формы на русский; именованные условия делают то же самое
+// в коде
 
 
+if task['author']['code'] == 'HardCollect':  # Если задача хардовая
+- is_hard_collection = task['author']['code'] == HARD_COLLECTION_AUTHOR_CODE
+// tasks_bot, app/keyboards/trades_keyboards.py, create_new_tasks_inline_kb:
+// комментарий пересказывал строковый литерал; с именованной константой
+// и переменной он не нужен
+
+
+async_task = get_on_redis(result['task_number'])  # Получаем задачу из Redis
+- cached_task = cache_get(result['task_number'])
+// tasks_bot, app/database/database.py, get_ready_result_task: комментарий
+// компенсировал имя async_task, которое вводило в заблуждение
+
+
+return brand_cleaned.upper() # Если не нашли в маппинге, возвращаем в верхнем регистре
+- return self.brand_mapping.get(brand_cleaned, brand_cleaned.upper())
+// price_parser, price_list_collector.py, normalize_brand: if с return
+// и комментарий к запасному значению заменены dict.get со значением
+// по умолчанию, которое читается ровно так же
+
+
+# Чтение файла / # Нормализация данных / # Обработка вложений / # Создаем новый DataFrame
+- комментарии удалены
+// price_parser, price_list_collector.py, process_data_files,
+// fetch_new_emails, normalize_dataframe: каждый стоял над строкой
+// pd.read_excel / normalize_dataframe / process_attachments / pd.DataFrame
+// и повторял её

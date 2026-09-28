@@ -6,14 +6,17 @@ seed / base - hash_base_candidate / hash_base
 // AST, task8/task8_2.py
 str1 - checked_value
 // AST, task11/task11.py
-v1, v2 - left_value, right_value
-// AST, task7/task7.py
-all - delete_all_matches
-// AST, task1/task1.py
-_min - minimal_item
-// AST, task6/task6.py
-queue - items_array
-// AST, task5/task5_2.py
+latest_files / latest_files_file - latest_files_by_sender / latest_files_index_path
+// price_parser, price_list_collector.py: словарь в памяти и путь к json
+// отличаются одним суффиксом, так же processed_emails / processed_emails_file
+type - action_type
+// bot_webserv, tasks/models.py, Result: поле затеняет встроенный type
+CompanyDatabase - Company
+// bot_webserv, census/models.py: модель - это карточка организации,
+// слово Database в имени модели пустое, как table в имени таблицы
+delete_message_timer - message_delete_delay_sec
+// tasks_bot, app/config.py: не таймер, а пауза перед asyncio.sleep,
+// и без суффикса не видно, что значение 2 - это секунды
 dbl - parsed_double_value
 // cpp_piscine, Module_06/ex00/Converter.cpp
 mirror - expected_values

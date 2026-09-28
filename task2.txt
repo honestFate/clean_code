@@ -4,9 +4,11 @@ _data - dimension_rows
 // task3/task3_2.py, MdDynArray: подмассивы текущего измерения,
 // а не абстрактные «данные»
 
-slots - cached_keys
-// task12/task12.py, NativeCache: ключи закэшированных записей;
-// slots — деталь открытой адресации
+author_list, supervisor_list, controller_list, partner_list, head_list
+- author, supervisor, controller, partner, head
+// tasks_bot, app/services/utils.py, comparison: в каждый параметр приходит
+// словарь одного сотрудника, а суффикс _list опускает имя на уровень
+// контейнера, которого нет; читается author_list['code'] как индекс списка
 
 hits - usage_frequencies
 // task12/task12.py, NativeCache: частота обращений к записи для LFU-вытеснения
@@ -16,8 +18,10 @@ remove_queue - outgoing_stack
 // task5/task5_2.py, StackQueue: это стеки, имя «queue» подменяет
 // уровень абстракции
 
-_sum - numeric_values_total
-// task4/task4.py, Stack: сумма числовых элементов для get_mean
+result_list - forward_recipients
+// tasks_bot, app/services/utils.py, comparison: функция собирает адресатов,
+// которым можно переадресовать задачу; «список результатов» - уровень
+// реализации, «получатели переадресации» - уровень предметной области
 
 
 // 6.2
@@ -31,40 +35,53 @@ fast - fast_pointer
 // task2/task2_2.py, linked_list_2_is_cycled: алгоритм Флойда
 // «черепаха и заяц»
 
-stamps - lru_timestamps
-// task12/task12_2.py, LruCache: метки последнего обращения для LRU-вытеснения
+r - task_cache
+// tasks_bot, app/services/redis_data.py: модульный клиент Redis, в котором
+// задачи живут 180 секунд; по сути это кэш с TTL между запросами к API,
+// и имя должно говорить о роли, а не о том, какая база под ним
 
-acc - rolling_hash_value
-// task8/task8_2.py, MultiHashTable._candidates: накопитель полиномиального
-// (rolling) хэша
+email_hash - message_fingerprint
+// price_parser, price_list_collector.py, get_email_hash / fetch_new_emails:
+// md5 от темы, даты и Message-ID нужен только для дедупликации писем -
+// это отпечаток (fingerprint), а не хэш для таблицы
 
 
 // 6.3
 
-city, street, house_number, postal_code
-// класс DeliveryAddress: по отдельности имена неоднозначны, в совокупности
-// образуют адрес доставки; если city понадобится локально в методе расчёта
-// маршрута — нужен префикс addr_city
+fio_surname, fio_name, fio_patronymic, opf_code, opf_full, opf_short
+// bot_webserv, census/models.py, CompanyDatabase и core/tasks.py,
+// save_organizations: модель плоская, поэтому контекст вложенного объекта
+// DaData сохранён префиксом; без него name из fio и full из opf
+// перепутались бы с name и full самой организации
 
-row_index, row_supplier_code, row_price_rub
-// функция parse_price_list: префикс row_ привязывает переменные к текущей
-// строке прайса и отделяет их от итоговых total_price_rub, total_rows_count
+redis_host, redis_port, redis_username, redis_password
+- RedisSettings(host, port, username, password) внутри Settings
+// tasks_bot, app/config.py: в плоском Settings префикс redis_ - единственный
+// контекст; вложенная модель даёт тот же контекст классом, и внутри
+// неё host и port уже однозначны
 
-attempt_number, delay_seconds, max_attempts
-// класс RetryPolicy: контекст класса делает имена самодостаточными,
-// но при передаче наружу нужны retry_delay_seconds, retry_max_attempts
+article, brand, price в словаре mapping
+// price_parser, price_list_collector.py, normalize_dataframe: внутри
+// mapping = self.column_mapping[sender_key] короткие ключи понятны,
+// а локальная переменная вне словаря называется price_col - ей нужен
+// контекст supplier_price_column, иначе непонятно, колонка чьей цены
 
 
 // 6.4
 
-k - shift_target_index
-// task3/task3.py, DynArray.insert/delete: индекс сдвигаемого элемента
+lst - forward_candidates
+// tasks_bot, app/keyboards/trades_keyboards.py,
+// create_trades_forward_inline_kb: сотрудники, из которых строятся кнопки
+// переадресации
 
-r - collected_nodes
-// task7/task7.py, OrderedList.get_all: накопитель нод для возврата
+dct - contact_persons
+// tasks_bot, app/keyboards/trades_keyboards.py,
+// create_contact_person_done_inline_kb: вдобавок в параметр приходит
+// список, а не словарь - короткое имя ещё и врёт о типе
 
-itm - appended_item
-// task3/task3.py, DynArray.append/insert: добавляемый элемент
+sep - csv_delimiter
+// price_parser, price_list_collector.py, process_data_files: перебор
+// разделителей при попытке прочитать CSV поставщика
 
 mode - most_frequent_value
 // task7/task7.py, OrderedList.most_frequent: самое частое значение списка

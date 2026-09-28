@@ -22,31 +22,53 @@ delete [] mirror;//
 // остались старыми, и поиск по имени из заголовка ничего не находит
 
 
-/*   stack_manager.c   */ в заголовке файла bonus/stack_manager_bonus.c
-- имя в заголовке исправлено на stack_manager_bonus.c
-// push_swap
-// п.3 недостоверный: обратный случай - файл скопирован в bonus,
-// заголовок указывает на основной файл, в котором другая реализация
+def amount_sum(partners_list):
+    """
+    Возвращает сумму всех заказов торговой точки.
+    Принимает список контрагентов в задачах агента.
+    """
+    for partner in partners_list:
+        ...
+        return sum(...)
+- return вынесен из цикла, суммируются заказы всех контрагентов,
+  docstring заменён на «Сумма заказов по всем контрагентам списка»
+// bot_webserv, analytics/services.py
+// п.3 недостоверный: return внутри for возвращал сумму первого
+// контрагента, а docstring обещал сумму всех - комментарий описывал
+// намерение, а не поведение, и прикрывал ошибку
 
 
-std::string const & getType() const; //Returns the materia type
-- комментарий удалён
-// cpp_piscine, Module_04/ex03/AMateria.hpp
-// п.4 шум: повторяет имя метода и тип возвращаемого значения
+# Валидация состояния
+is_valid, task_data = await validate_task_state(state, ['task_number'])
+# Получаем детали задачи
+task = await get_task_detail(task_data['task_number'])
+- комментарии удалены: пять копий первого и четыре второго
+// tasks_bot, app/handlers/done_handlers.py
+// п.4 шум: комментарий повторяет имя функции на следующей строке,
+// а в пяти копиях он ещё и растягивает одинаковый шаблон обработчиков
 
 
-std::sort(this->_vec.begin(), this->_vec.end()); //sort original vector
-- комментарий удалён
-// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
-// п.4 шум: повторяет имя функции std::sort
+def clear_date(data):
+    """Функция очистки даты от символов"""
+    return data.replace("T", " ").replace("Z", "")
+- def format_api_datetime(iso_datetime: str) -> str: без docstring
+// tasks_bot, app/services/utils.py
+// п.7 избыточный: «Функция» - и так видно, «очистки от символов» -
+// пересказ replace; при этом о главном - что это ISO-дата из API,
+// приводимая к виду для сообщения, - не говорил ни комментарий, ни имя
 
 
-std::vector<long int> transoformed(this->_vec.size() - 1);
-  //creating new empty vector with less one size
-- std::vector<long int> gapsBetweenNeighbours(this->_vec.size() - 1);
-// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
-// п.7 избыточный: комментарий пересказывает объявление и длиннее
-// его, а смысл размера "на единицу меньше" передаёт новое имя
+# Проверяем письма с конца (от новых к старым) - ИСПРАВЛЕНО
+...
+# Идем от конца списка (реверс для обработки от новых к старым)
+for message in all_messages:
+- for message in reversed(all_messages):  комментарии удалены
+// price_parser, price_list_collector.py, fetch_new_emails
+// п.3 недостоверный: цикл шёл от старых писем к новым, IMAP SEARCH
+// возвращает номера по возрастанию. Два комментария подряд уверяли
+// в обратном, а «ИСПРАВЛЕНО» - след правки, которая так и не попала
+// в код. Для каждого поставщика бралось самое старое необработанное
+// письмо вместо свежего прайса
 
 
 //
@@ -85,14 +107,15 @@ std::vector<long int> transoformed(this->_vec.size() - 1);
 // GradeTooLowException, заменена циклом в блоке try выше
 
 
-//AAnimal a; //Error!
-- строка удалена из main, проверка вынесена в отдельный файл
-  tests/abstract_instantiation.cpp, для которого цель make
-  ожидает ошибку компиляции
-// cpp_piscine, Module_04/ex02/main.cpp
-// п.11 закомментированный код: проверку абстрактности нельзя
-// запустить, пока она закомментирована, а раскомментировать её
-// значит сломать сборку всего упражнения
+# from parse.services import Parsers
+# @shared_task
+# def update_price():
+#     queryset = Product.objects.all()
+#     ...
+- удалено
+// bot_webserv, core/tasks.py
+// п.11 закомментированный код: модуля parse в проекте уже нет, код
+// нельзя раскомментировать - он не соберётся; история есть в git
 
 
 //sigemptyset(&sa.sa_mask);
@@ -105,20 +128,25 @@ std::vector<long int> transoformed(this->_vec.size() - 1);
 // вторая - черновик от попытки блокировать SIGUSR1
 
 
-std::transform(..., std::minus<int>()); //fill with *(n + 1) - *n
-- fillGapsBetweenNeighbours(gapsBetweenNeighbours);
-// cpp_piscine, Module_08/ex01/Span.cpp, shortestSpan
-// п.12 функция вместо комментария: строка не помещалась в экран,
-// комментарий объяснял, что она делает
+# name
+if clean_data['data'].get('name'): ...
+# FIO
+if clean_data['data'].get('fio') is not None: ...
+# OPF / # Management / # Address / # AddressData / # State
+- fill_name(company_card, dadata_party['name']), fill_fio(...), fill_opf(...),
+  fill_management(...), fill_address(...), fill_state(...)
+// bot_webserv, core/tasks.py, save_organizations
+// п.12 функция вместо комментария: комментарии-заголовки делили
+// 75-строчную функцию на семь блоков, каждый блок стал функцией
+// с этим именем
 
 
-i->makeSound(); //will output the cat sound!
-- const Animal* catAsAnimal = new Cat(); ... catAsAnimal->makeSound();
-// cpp_piscine, Module_04/ex00/main.cpp
-// п.12 переменная вместо комментария: комментарий нужен был
-// только потому, что указатель назван i
-
-
-Комментариев за закрывающей скобкой (п.6) в коде нет. Позиционные маркеры (п.5)
-и обязательные комментарии (п.10) встречаются только в заголовках,
-которых требует задание школы, поэтому не трогаются.
+# ------------------------Report 1------------------------
+...
+# ------------------------Report 2------------------------
+- модуль разделён на analytics/reports/census_volumes.py
+  и analytics/reports/partner_sales.py, create_report_1 и create_report_2
+  переименованы по содержанию отчёта
+// bot_webserv, analytics/services.py
+// п.5 позиционные маркеры: баннеры делили 390-строчный модуль на два
+// независимых отчёта; граница между ними - это граница модулей

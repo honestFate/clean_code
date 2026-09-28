@@ -11,27 +11,33 @@ int(n ** 0.5) + 1 - math.isqrt(n) + 1
 // task8/task8_2.py, _is_prime: возведение в степень 0.5 даёт float,
 // и на больших n округление может отрезать делитель
 
-self._sum / len(self.stack) - защита уже есть, но делитель берётся дважды
-// task4/task4.py, get_mean: len(self.stack) вычисляется после проверки
-// на пустоту в отдельной строке items_count. Деление явно
-// защищено от нуля одним читаемым условием
+if new_data.save(): ... return True / return True - new_data.save() без условия
+// bot_webserv, core/tasks.py, save_organizations: Model.save() в Django
+// возвращает None, условие всегда ложно - лог о сохранении и удаление ИНН
+// из Redis не выполнялись ни разу, а обе ветки всё равно возвращали True.
+// Логическое выражение строилось на значении, которое не является
+// логическим
 
-self.limit - проверка limit > 0 в CyclePointer.__init__
-// task5/task5_2.py: shift() сравнивает pointer + 1 == limit, при limit == 0
-// указатель никогда не сбросится и очередь молча зациклится на нуле
+task['edited'] = True, / task['status'] = "Выполнено", - запятые убраны
+// tasks_bot, app/database/database.py, get_ready_result_task: висящая
+// запятая превращала значение в кортеж (True,) и ("Выполнено",), и в API
+// уходил не тот тип; строка выглядела как присваивание bool и строки
 
 self.filter_len - проверка filter_len > 0 в BloomFilter.__init__
 // task11/task11.py, _hash: результат берётся по модулю filter_len,
 // при нуле - ZeroDivisionError уже внутри хэша, далеко от причины
 
-'Index is out of bounds' - INDEX_OUT_OF_BOUNDS_MESSAGE
-// task3/task3.py: одна и та же строка продублирована в четырёх местах,
-// вынесена в константу модуля, текст правится в одной точке
+normalized_df['Артикул'] != 'nan', normalized_df['Бренд'] != 'NAN' - dropna до astype(str)
+// price_parser, price_list_collector.py, normalize_dataframe: пропуски
+// сначала превращались в строку 'nan' через astype(str), а у брендов -
+// ещё и в 'NAN' через upper(), потом отфильтровывались сравнением строк.
+// Реальный артикул NAN отбрасывался бы вместе с пустыми ячейками;
+// пропуск должен проверяться как пропуск, а не как текст
 
-f"QUEUE_CAPACITY of {QUEUE_CAPACITY} is full" - QUEUE_FULL_MESSAGE.format(capacity=...)
-// task5/task5_2.py, enqueue: сообщение об ошибке названо именем
-// переменной из кода, а не сущностью, шаблон вынесен в константу -
-// это же точка входа для будущей локализации
+"Техническая ошибка. Обратитесь в тех.поддержку" - TECHNICAL_ERROR_TEXT
+// tasks_bot, app/database/database.py, put_register: строка трижды
+// в одной функции и ещё в вариациях по обработчикам, вынесена
+// в lexicon рядом с остальными текстами бота
 
 ord(char) - ord(char) по строке после unicodedata.normalize("NFC", value)
 // task11/task11.py, _hash: одна и та же строка в NFC и NFD даёт разные

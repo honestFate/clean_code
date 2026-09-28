@@ -26,22 +26,58 @@
     SaltedHashTable.with_random_salt(table_size=17, probe_step=3)
     SaltedHashTable.with_fixed_salt(table_size=17, probe_step=3, salt_value=12345)
 
-3) MdDynArray — task3/task3_2.py
+3) результат операции бота — tasks_bot, app/database/database.py
 было:
-    MdDynArray([3, 4], 0)
-    MdDynArray([3, 4])
+    return {'status': True, 'text': r.json()}
+    return {'status': False, 'text': "Вы не зарегистрированы в системе"}
+    return {'status': False, 'message': "Техническая ошибка. Обратитесь в тех.поддержку"}
 стало:
-    MdDynArray.filled_with(dimension_sizes=[3, 4], fill_value=0)
-    MdDynArray.of_empty_cells(dimension_sizes=[3, 4])
+    @dataclass(frozen=True)
+    class BotReply:
+        is_success: bool
+        text: str
+
+        @classmethod
+        def success(cls, text: str) -> "BotReply": ...
+
+        @classmethod
+        def failure(cls, text: str) -> "BotReply": ...
+
+        @classmethod
+        def technical_error(cls) -> "BotReply":
+            return cls.failure(TECHNICAL_ERROR_TEXT)
+
+    return BotReply.failure(NOT_REGISTERED_TEXT)
+// словари с True/False в первом поле собирались вручную в каждой
+// функции, в put_register ключ текста назывался message вместо text;
+// фабрики задают форму ответа в одном месте
 
 
 3.2. Интерфейсы и абстрактные классы
 
-ICharacter      - Character           // интерфейс без префикса
-Character       - PlayerCharacter     // реализации нужно своё содержательное имя, а не имя интерфейса
+bitrix, modules/tranzit.crm/lib/Repository
 
-IMateriaSource  - MateriaSource       // интерфейс
-MateriaSource   - MateriaBook         // реализация хранилище шаблонов материй
+RoleRepositoryInterface      - RoleRepository          // интерфейс: хранилище ролей, суффикс Interface ничего не добавляет
+RoleRepository               - HlRoleRepository        // реализация поверх HL-блока Roles - это и есть её отличие
+CounterRepositoryInterface   - CounterRepository
+CounterRepository            - HlCounterRepository     // то же для HL-блока CounterConditions
 
-AAnimal         - Animal              // WrongAnimal / WrongCat из ex00 - это демонстрация невиртуального деструктора:
-				      // NonPolymorphicAnimal / NonPolymorphicCat
+TaskServiceInterface         - TaskTracker             // интерфейс лежит в Repository\Contract, но это не репозиторий
+TaskService                  - BitrixTaskTracker       // и не сервис бизнес-логики, а обёртка над модулем tasks
+NotificationServiceInterface - Notifier
+NotificationService          - ImNotifier              // реализация шлёт уведомления через CIMNotify модуля im
+
+bitrix, modules/tranzit.crm/lib/Trigger, Action
+
+MatcherInterface             - Matcher                 // реализации EventMatcher, TaskMatcher, EntityMatcher
+ActionInterface              - Action                  // и CreateTaskAction, WebhookAction уже названы по сути,
+                                                       // имя интерфейса стоит просто сократить
+
+bitrix, php_interface/classes/Api, HlApi
+
+HandlerInterface             - ApiHandler              // интерфейс с единственным методом handle(ApiRequest)
+AbstractHandler              - ActionMapHandler        // абстрактный класс, который диспетчеризует запрос по
+                                                       // $actionMap; Abstract кодирует вид объявления, как
+                                                       // префикс I, а имя должно говорить, чем класс отличается
+FieldTypeInterface           - FieldType               // StringType, MoneyType, DateType и т.д. уже различаются по сути
+HlBlockConfigInterface       - HlBlockConfig           // OutletsConfig, ContractsConfig, PortfolioConfig

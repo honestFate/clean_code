@@ -4,9 +4,6 @@ sz - table_size
 stp - probe_step
 // task8/task8.py, HashTable.__init__: шаг линейного пробирования при коллизии
 
-slots - keys
-// task9/task9.py, NativeDictionary: массив, хранящий ключи словаря
-
 s1 - tokens_stack
 // task4/task4_2.py, evaluate_postfix: стек входных токенов выражения
 
@@ -19,17 +16,31 @@ chars - open_brackets_stack
 temp - dequeued_item
 // task5/task5_2.py, StaticArrayQueue.dequeue: элемент, снятый с головы очереди
 
-len - items_count
-// task5/task5_2.py, StaticArrayQueue: счётчик элементов в очереди
-
-acc - rolling_hash_value
-// task8/task8_2.py, MultiHashTable._candidates: накопитель полиномиального хэша
-
 victim - victim_slot_index
 // task12/task12.py, NativeCache._displace: индекс вытесняемого слота
 
-tail - tail_index
-// task6/task6_2.py, DynamicArrayDeque.removeTail: позиция последнего элемента в кольцевом буфере
+r - worker_response
+// tasks_bot, app/database/database.py, get_workers_number: HTTP-ответ API
+// с карточкой сотрудника; r в модуле встречается в восьми функциях
+// и каждый раз означает ответ на другой запрос
 
-i - nodes_count
-// task1/task1.py, LinkedList.len: счётчик пройденных нод списка
+t - worker_lookup_response
+// tasks_bot, app/database/database.py, put_register: ответ на поиск
+// сотрудника по номеру телефона; рядом живёт update - ответ на PUT,
+// по t и update не понять, что из них поиск, а что запись
+
+update_id - admin_chat_id
+// tasks_bot, app/services/log_handlers.py, TelegramLogsHandler.emit:
+// идентификатор чата администратора, куда уходят логи. update_id -
+// термин Telegram Bot API (номер входящего апдейта), имя обещало
+// совсем другую сущность
+
+async_task - cached_task
+// tasks_bot, app/database/database.py, get_ready_result_task: задача,
+// прочитанная из Redis; к asyncio отношения не имеет, по имени казалось,
+// что это корутина или asyncio.Task
+
+new_data - company_card
+// bot_webserv, core/tasks.py, save_organizations: запись CompanyDatabase,
+// которую заполняют полями ответа DaData по ИНН; "новые данные" не говорит,
+// чьи данные и что с ними делают
